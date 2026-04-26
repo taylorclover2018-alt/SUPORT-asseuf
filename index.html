@@ -1,64 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Rateio de Auxílio</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<meta charset="UTF-8">
+<title>TransportePro</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
 
-<h1>Rateio de Auxílio</h1>
+<div class="app">
 
-<section class="form">
-  <input type="date" id="data">
-  <input type="text" id="mes" placeholder="Mês de referência">
-  <input type="number" id="auxDinheiro" placeholder="Auxílio em dinheiro">
-  <input type="number" id="auxCombustivel" placeholder="Auxílio combustível">
-  <input type="text" id="descricao" placeholder="Descrição">
-</section>
+  <aside class="sidebar">
+    <h2>🚍 TransportePro</h2>
+    <button onclick="trocarTela('dashboard')">Dashboard</button>
+    <button onclick="trocarTela('rateio')">Rateio</button>
+    <button onclick="trocarTela('historico')">Histórico</button>
+    <button onclick="trocarTela('relatorio')">Relatórios</button>
+  </aside>
 
-<div class="rotas">
-  
-  <!-- CURVELO -->
-  <div class="rota">
-    <h2>Curvelo</h2>
-    <input type="number" id="curveloIntegrais" placeholder="Alunos integrais">
-    <input type="number" id="curveloDescontoQtd" placeholder="Qtd desconto">
-    <input type="number" id="curveloDescontoPerc" placeholder="% desconto">
+  <main class="conteudo">
 
-    <input type="number" id="curveloPassQtd" placeholder="Passagens arrecadadas">
-    <input type="number" id="curveloPassValor" placeholder="Valor das passagens">
-    
-    <div id="veiculosCurvelo"></div>
-    <button onclick="addVeiculo('curvelo')">+ Veículo</button>
-  </div>
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tela">
+      <h1>Dashboard</h1>
 
-  <!-- SETE LAGOAS -->
-  <div class="rota">
-    <h2>Sete Lagoas</h2>
-    <input type="number" id="seteIntegrais">
-    <input type="number" id="seteDescontoQtd">
-    <input type="number" id="seteDescontoPerc">
+      <div class="cards">
+        <div class="card">Total Rateado: <span id="totalMes">0</span></div>
+        <div class="card">Veículos: <span id="totalVeiculos">0</span></div>
+        <div class="card">Alunos: <span id="totalAlunos">0</span></div>
+      </div>
 
-    <input type="number" id="setePassQtd">
-    <input type="number" id="setePassValor">
+      <canvas id="graficoLinha"></canvas>
+      <canvas id="graficoPizza"></canvas>
+    </section>
 
-    <div id="veiculosSete"></div>
-    <button onclick="addVeiculo('sete')">+ Veículo</button>
-  </div>
+    <!-- RATEIO -->
+    <section id="rateio" class="tela active">
+      <h1>Novo Rateio</h1>
 
+      <input type="date" id="data">
+      <input type="text" id="mes" placeholder="Mês">
+      <input type="number" id="auxDinheiro" placeholder="Auxílio dinheiro">
+      <input type="number" id="auxCombustivel" placeholder="Auxílio combustível">
+      <input type="text" id="descricao">
+
+      <div class="grid">
+
+        <!-- CURVELO -->
+        <div class="box">
+          <h2>Curvelo</h2>
+          <input id="cInt" placeholder="Integrais">
+          <input id="cDescQtd" placeholder="Qtd desconto">
+          <input id="cDescPerc" placeholder="% desconto">
+          <input id="cPass" placeholder="Passagens">
+
+          <div id="veicCurvelo"></div>
+          <button onclick="addVeiculo('c')">+ Veículo</button>
+        </div>
+
+        <!-- SETE -->
+        <div class="box">
+          <h2>Sete Lagoas</h2>
+          <input id="sInt">
+          <input id="sDescQtd">
+          <input id="sDescPerc">
+          <input id="sPass">
+
+          <div id="veicSete"></div>
+          <button onclick="addVeiculo('s')">+ Veículo</button>
+        </div>
+
+      </div>
+
+      <button onclick="calcular()">CALCULAR</button>
+
+      <div id="resultado"></div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section id="historico" class="tela">
+      <h1>Histórico</h1>
+      <div id="listaHistorico"></div>
+    </section>
+
+    <!-- RELATÓRIO -->
+    <section id="relatorio" class="tela">
+      <h1>Relatório</h1>
+      <button onclick="gerarPDF()">Baixar PDF Completo</button>
+    </section>
+
+  </main>
 </div>
 
-<button onclick="calcular()">Calcular Rateio</button>
-
-<section id="resultado"></section>
-
-<canvas id="grafico"></canvas>
-
-<button onclick="gerarPDF()">Baixar PDF</button>
-
 <script src="app.js"></script>
+<script src="dashboard.js"></script>
+<script src="pdf.js"></script>
+
 </body>
 </html>
