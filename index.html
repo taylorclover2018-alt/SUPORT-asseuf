@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Rateio de Auxílio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<h1>Rateio de Auxílio</h1>
+
+<section class="form">
+  <input type="date" id="data">
+  <input type="text" id="mes" placeholder="Mês de referência">
+  <input type="number" id="auxDinheiro" placeholder="Auxílio em dinheiro">
+  <input type="number" id="auxCombustivel" placeholder="Auxílio combustível">
+  <input type="text" id="descricao" placeholder="Descrição">
+</section>
+
+<div class="rotas">
+  
+  <!-- CURVELO -->
+  <div class="rota">
+    <h2>Curvelo</h2>
+    <input type="number" id="curveloIntegrais" placeholder="Alunos integrais">
+    <input type="number" id="curveloDescontoQtd" placeholder="Qtd desconto">
+    <input type="number" id="curveloDescontoPerc" placeholder="% desconto">
+
+    <input type="number" id="curveloPassQtd" placeholder="Passagens arrecadadas">
+    <input type="number" id="curveloPassValor" placeholder="Valor das passagens">
+    
+    <div id="veiculosCurvelo"></div>
+    <button onclick="addVeiculo('curvelo')">+ Veículo</button>
+  </div>
+
+  <!-- SETE LAGOAS -->
+  <div class="rota">
+    <h2>Sete Lagoas</h2>
+    <input type="number" id="seteIntegrais">
+    <input type="number" id="seteDescontoQtd">
+    <input type="number" id="seteDescontoPerc">
+
+    <input type="number" id="setePassQtd">
+    <input type="number" id="setePassValor">
+
+    <div id="veiculosSete"></div>
+    <button onclick="addVeiculo('sete')">+ Veículo</button>
+  </div>
+
+</div>
+
+<button onclick="calcular()">Calcular Rateio</button>
+
+<section id="resultado"></section>
+
+<canvas id="grafico"></canvas>
+
+<button onclick="gerarPDF()">Baixar PDF</button>
+
+<script src="app.js"></script>
+</body>
+</html>
