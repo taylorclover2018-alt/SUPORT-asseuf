@@ -1,0 +1,52 @@
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form input {
+  margin: 5px;
+  padding: 10px;
+  width: 200px;
+}
+
+.rotas {
+  display: flex;
+  gap: 20px;
+}
+
+.rota {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+}
+
+input {
+  display: block;
+  margin: 8px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #22c55e;
+  border: none;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+#resultado {
+  margin-top: 20px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+}
